@@ -18,6 +18,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Build Docker image (test settings)
+        working-directory: ${{ github.workspace }} # リポジトリのルートを作業ディレクトリに
         run: |
           docker compose build \
             --build-arg RAILS_ENV="test" \
@@ -25,17 +26,18 @@ jobs:
             back
 
       - name: Run RuboCop
+        working-directory: ${{ github.workspace }}
         run: |
-          # RuboCopはDB不要なので、DBを起動せずイメージだけあればOK
           docker compose run --rm back bash -c "bundle exec rubocop"
 
       - name: Start DB
+        working-directory: ${{ github.workspace }}
         run: |
           docker compose up -d db
-          # 簡易的にDB準備のためスリープ
           sleep 10
 
       - name: Prepare Test DB
+        working-directory: ${{ github.workspace }}
         run: |
           docker compose run --rm back bash -c "
             RAILS_ENV=test bundle exec rails db:create &&
@@ -43,6 +45,7 @@ jobs:
           "
 
       - name: Run RSpec Tests
+        working-directory: ${{ github.workspace }}
         run: |
           docker compose run --rm back bash -c "
             RAILS_ENV=test bundle exec rspec
@@ -50,5 +53,6 @@ jobs:
 
       - name: Shut down
         if: always()
+        working-directory: ${{ github.workspace }}
         run: |
           docker compose down
