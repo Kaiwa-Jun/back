@@ -25,7 +25,7 @@ jobs:
           ls -la ../..
 
       - name: Build Docker image (test settings)
-        working-directory: ${{ github.workspace }}/../..
+        working-directory: ${{ github.workspace }}/back
         run: |
           docker compose build \
             --build-arg RAILS_ENV="test" \
@@ -33,7 +33,7 @@ jobs:
             back
 
       - name: Run RuboCop
-        working-directory: ${{ github.workspace }}
+        working-directory: ${{ github.workspace }}/back
         run: |
           docker compose run --rm back bash -c "bundle exec rubocop"
 
