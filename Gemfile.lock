@@ -112,6 +112,7 @@ GEM
       net-smtp
     marcel (1.0.4)
     mini_mime (1.1.5)
+    mini_portile2 (2.8.8)
     minitest (5.25.4)
     msgpack (1.7.5)
     mutex_m (0.3.0)
@@ -125,6 +126,9 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.4)
+    nokogiri (1.18.1)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
     nokogiri (1.18.1-aarch64-linux-gnu)
       racc (~> 1.4)
     nokogiri (1.18.1-x86_64-linux-gnu)
@@ -137,6 +141,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.1.8)
+    rack-cors (2.0.2)
+      rack (>= 2.0.0)
     rack-session (2.1.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -192,6 +198,7 @@ GEM
 
 PLATFORMS
   aarch64-linux
+  ruby
   x86_64-linux
 
 DEPENDENCIES
@@ -199,6 +206,7 @@ DEPENDENCIES
   debug
   pg (~> 1.1)
   puma (>= 5.0)
+  rack-cors
   rails (~> 7.1.5, >= 7.1.5.1)
   tzinfo-data
 
