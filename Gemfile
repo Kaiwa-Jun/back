@@ -10,8 +10,6 @@ gem "bootsnap", require: false
 gem "rack-cors"
 
 group :development, :test do
-  gem "rspec-rails"
-  gem "rubocop", require: false
   gem "debug", platforms: %i[ mri windows ]
 end
 
